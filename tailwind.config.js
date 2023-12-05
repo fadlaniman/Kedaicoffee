@@ -11,13 +11,15 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "hero-pattern": "url('/images/banner.png')",
+        "hero-pattern": "url('/images/banner.jpg')",
       },
       fontFamily: {
-        "playpen-text": ["Playpen Sans", "cursive"],
-        "libre-baskerville": ["Libre Baskerville", "serif"],
-        "monsterrat-text": ["Montserrat", "sans-serif"],
-        "Cabin-text": ["Cabin", "sans-serif"],
+        nova: ['"Nova Square"', "sans-serif"],
+        poppins: ['"Poppins"', "sans-serif"],
+      },
+      screens: {
+        tablet: "768px",
+        laptop: "1280px",
       },
     },
   },

@@ -1,83 +1,70 @@
 "use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import Logo from "../../../public/images/logo.png";
-import { FaShoppingCart } from "react-icons/fa";
-import { HiMenuAlt4 } from "react-icons/hi";
-import { RxExit } from "react-icons/rx";
 import { useState, useEffect } from "react";
+import { LuShoppingBag, LuHeart, LuUser } from "react-icons/lu";
+import { IoGridOutline } from "react-icons/io5";
+import { TbMenu } from "react-icons/tb";
+import { IoMdClose } from "react-icons/io";
+import { useGlobalState } from "../page";
 
 export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   const [navStatic, setNavStatic] = useState(false);
+  const [total, setTotal] = useGlobalState("total");
   useEffect(() => {
     window.addEventListener("scroll", () => {
       const currentScroll = window.scrollY;
       {
-        currentScroll > 50 ? setNavStatic(true) : setNavStatic(false);
+        currentScroll > 200 ? setNavStatic(true) : setNavStatic(false);
       }
     });
   });
 
   return (
-    <div className={navStatic ? "header-active" : "header"}>
-      <div className="flex space-x-1">
-        <div className="my-auto">
-          <Image
-            src={Logo}
-            alt={Logo}
-            height={500}
-            width={500}
-            className="w-10"
-          />
+    <nav className={navStatic ? "header-active" : "header"}>
+      <section className="flex justify-between ">
+        <div className="flex gap-10 text-neutral-800">
+          <h1 className="text-2xl font-Ephesis-text">Kedaicoffee.</h1>
         </div>
-        <h1 className="my-auto font-libre-baskerville text-lg">MieBaso</h1>
-      </div>
-      <div className="my-auto">
-        <div className="xl:hidden cursor-pointer">
-          <HiMenuAlt4
-            onClick={() => {
-              setToggle(!toggle);
-            }}
-            className="text-2xl my-auto"
-          />
+        <div className="flex gap-1 text-2xl text-neutral-800 my-auto">
+          <Link href="/">
+            <LuHeart />
+          </Link>
+          <Link href="/auth/login">
+            <LuUser />
+          </Link>
+          <Link href="/cart" className="flex">
+            <LuShoppingBag />
+            <p className="text-xs font-bold">{total}</p>
+          </Link>
         </div>
-        <div
+      </section>
+      <section className="flex gap-10 justify-between xl:justify-normal">
+        <div className="flex gap-2 bg-neutral-800 rounded-md text-gray-200 px-4 py-2">
+          <IoGridOutline className="my-auto" />
+          <h2 className="text-sm my-auto ">All Departements</h2>
+        </div>
+        <div className={toggle ? "navbar-active" : "navbar"}>
+          <Link href="/">Home</Link>
+          <Link href="/information">Information</Link>
+        </div>
+        <TbMenu
+          className={toggle ? "hidden" : "text-3xl xl:hidden cursor-pinter"}
+          onClick={() => {
+            setToggle(!toggle);
+          }}
+        />
+        <IoMdClose
           className={
             toggle
-              ? "p-7 gap-5 grid fixed top-0 left-0 m-2 -translate-x-0 duration-500 bg-blue-600 text-white font-poppins-text text-sm xl:flex xl:static xl:bg-transparent xl:text-black xl:p-0"
-              : "hidden xl:flex gap-5 text-sm font-monsterrat-text text-black"
+              ? "text-3xl xl:hidden z-10 text-white absolute right-0 m-3 cursor-pinter"
+              : "hidden"
           }
-        >
-          <Link className="Link" href="/">
-            Home
-          </Link>
-          <Link className="Link" href="/">
-            Menu
-          </Link>
-          <Link className="Link" href="">
-            How it Works
-          </Link>
-          <Link className="Link" href="">
-            Contact
-          </Link>
-          <div className="grid my-auto">
-            <Link href="/">
-              <FaShoppingCart className="text-xl" />
-            </Link>
-          </div>
-          <div>
-            <Link
-              className="flex py-2 px-5 space-x-3 bg-blue-300 rounded-full text-black"
-              href=""
-            >
-              <RxExit className="text-lg my-auto " />
-              <p className="">Sign in</p>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
+          onClick={() => {
+            setToggle(!toggle);
+          }}
+        />
+      </section>
+    </nav>
   );
 }
