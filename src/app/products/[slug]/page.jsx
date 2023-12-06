@@ -20,7 +20,6 @@ export default function Products({ params }) {
   });
   function reducer(state, action) {
     detailProduct.quantity = count;
-    setTotal(cart.length);
     if (action.type === "add" && !cart.includes(detailProduct)) {
       return {
         cart: cart.push(detailProduct),
@@ -86,6 +85,7 @@ export default function Products({ params }) {
                 className="flex py-3 px-5 gap-1 border rounded-sm cursor-pointer border-neutral-800 bg-neutral-200 text-neutral-800 hover:bg-neutral-100"
                 onClick={() => {
                   dispatch({ type: "add" });
+                  setTotal(cart.length);
                 }}
               >
                 <MdAddShoppingCart className="text-xl my-auto" />

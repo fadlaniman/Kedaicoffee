@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useGlobalState } from "../page";
 import { useEffect, useState, useReducer } from "react";
 import { CgMathMinus, CgMathPlus } from "react-icons/cg";
-import { LuShoppingBag, LuHeart, LuUser } from "react-icons/lu";
 
 export default function Cart() {
   const [total, setTotal] = useGlobalState("total");
@@ -40,7 +39,7 @@ export default function Cart() {
     }
     setAmount(total);
     setCount(quantity);
-  });
+  }, []);
 
   return (
     <section className="py-28 laptop:px-60 space-y-10 px-5 text-neutral-800">

@@ -29,7 +29,7 @@ export default function Login() {
           </button>
         </form>
         <h5 className="text-center text-sm py-3">
-          do you haven't already account?
+          do you haven t already account?
           <Link href="/register" className="text-blue-600">
             Sign Up
           </Link>

@@ -7,8 +7,8 @@ export default function Footer() {
       <section className="text-gray-200 space-y-5">
         <h3 className="text-2xl font-glass-antiaqua">Kedaicoffee.</h3>
         <p className="font-medium text-sm xl:w-1/4">
-          " The warmth of coffee provides a temporary pleasure to forget the the
-          troubles of each sip "
+          The warmth of coffee provides a temporary pleasure to forget the the
+          troubles of each sip
         </p>
       </section>
       <section className="text-gray-200 space-y-3">
