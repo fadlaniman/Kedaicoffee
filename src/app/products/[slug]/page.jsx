@@ -7,15 +7,6 @@ import { CgMathMinus, CgMathPlus } from "react-icons/cg";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useGlobalState } from "@/app/page";
 
-function generateStaticParams() {
-  const [detailProduct, setDetailProduct] = useGlobalState("product");
-  return [
-    {
-      id: `${detailProduct.id}`,
-    },
-  ];
-}
-
 export default function Products({ params }) {
   const [count, setCount] = useState(1);
   const [detailProduct, setDetailProduct] = useGlobalState("product");
