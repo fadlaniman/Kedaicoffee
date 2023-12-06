@@ -27,7 +27,7 @@ export default function Navbar() {
           <h1 className="text-2xl font-Ephesis-text">Kedaicoffee.</h1>
         </div>
         <div className="flex gap-1 text-2xl text-neutral-800 my-auto">
-          <Link href="/">
+          <Link href="/auth/login">
             <LuHeart />
           </Link>
           <Link href="/auth/login">
