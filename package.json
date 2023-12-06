@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@formatjs/intl-numberformat": "^8.8.0",
+    "@rcaferati/wac": "^1.0.0",
     "env": "^0.0.2",
     "gsap": "^3.12.2",
     "local-storage": "^2.0.0",
