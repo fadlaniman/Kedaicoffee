@@ -16,15 +16,14 @@ export default function Products({ params }) {
   const [amount, setAmount] = useGlobalState("amount");
   const [value, dispatch] = useReducer(reducer, {
     cart: cart,
-    total: total,
     quantity: quantity,
   });
   function reducer(state, action) {
     detailProduct.quantity = count;
+    setTotal(cart.length);
     if (action.type === "add" && !cart.includes(detailProduct)) {
       return {
         cart: cart.push(detailProduct),
-        total: setTotal(cart.length),
         quantity: quantity.push(detailProduct.quantity),
       };
     }

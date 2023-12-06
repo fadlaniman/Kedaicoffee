@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { LuShoppingBag, LuHeart, LuUser } from "react-icons/lu";
 import { IoGridOutline } from "react-icons/io5";
 import { TbMenu } from "react-icons/tb";
@@ -11,6 +11,7 @@ export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   const [navStatic, setNavStatic] = useState(false);
   const [total, setTotal] = useGlobalState("total");
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       const currentScroll = window.scrollY;
@@ -18,7 +19,7 @@ export default function Navbar() {
         currentScroll > 200 ? setNavStatic(true) : setNavStatic(false);
       }
     });
-  });
+  }, []);
 
   return (
     <nav className={navStatic ? "header-active" : "header"}>

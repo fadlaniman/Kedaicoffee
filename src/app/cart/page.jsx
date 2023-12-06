@@ -22,7 +22,7 @@ export default function Cart() {
   function reducer(state, action) {
     if (action.type === "remove") {
       return {
-        total: setTotal((total - 1) % total),
+        total: total,
         data: data,
         count: count,
       };
@@ -102,6 +102,7 @@ export default function Cart() {
                     className="cursor-pointer text-sm"
                     onClick={() => {
                       dispatch({ type: "remove" });
+                      setTotal((total - 1) % total);
                       data.splice(index, 1);
                       count.splice(index, 1);
                     }}
