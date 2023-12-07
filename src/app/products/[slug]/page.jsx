@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { CgMathMinus, CgMathPlus } from "react-icons/cg";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useGlobalState } from "@/app/page";
+import { Toast } from "bootstrap";
 
 export default function Products({ params }) {
   const [count, setCount] = useState(1);

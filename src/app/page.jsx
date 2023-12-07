@@ -130,10 +130,8 @@ export default function Home() {
     const Item = products.filter((item) =>
       item.name.toLowerCase().includes(search)
     );
-    if (search) {
-      setItem(Item);
-    } else {
-      setItem(products);
+    {
+      search ? setItem(Item) : setItem(products);
     }
   }, [search]);
 
@@ -238,21 +236,22 @@ export default function Home() {
         <section className="container-catalog">
           <section>
             <h3 className="uppercase text-center text-lg text-neutral-800 border-t-2 border-b-2 border-neutral-800 py-5">
-              all product
+              all products
             </h3>
-            <div className="grid grid-flow-col py-12 px-7 justify-center tablet:justify-end">
+            <label className="grid grid-flow-col py-12 px-10 justify-center tablet:justify-end">
               <input
                 placeholder="Search"
                 type="search"
                 onChange={(e) => {
-                  setSearch(e.target.value);
+                  const input = e.target.value.toLowerCase();
+                  setSearch(input);
                 }}
                 className="outline-none rounded-sm bg-neutral-100 p-3"
               />
               <p className="bg-neutral-100 p-3">
                 <IoSearchOutline className="text-2xl my-auto cursor-pointer text-neutral-400" />
               </p>
-            </div>
+            </label>
           </section>
           <section className="catalog" ref={catalog}>
             {item.map((val, index) => (

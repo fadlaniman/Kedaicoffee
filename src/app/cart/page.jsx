@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useGlobalState } from "../page";
 import { useEffect, useState, useReducer } from "react";
 import { CgMathMinus, CgMathPlus } from "react-icons/cg";
@@ -16,6 +17,7 @@ export default function Cart() {
     total: total,
     data: data,
     count: count,
+    amount: amount,
   });
 
   function reducer(state, action) {
@@ -24,22 +26,23 @@ export default function Cart() {
         total: total,
         data: data,
         count: count,
+        amount: amount,
       };
     }
   }
 
   useEffect(() => {
     let item = 0;
-    let total = 0;
+    let jumlah = 0;
     for (item in data) {
       const res = data[item].price * data[item].quantity;
       listAmount.push(res);
-      total += res;
+      jumlah += res;
       item++;
     }
-    setAmount(total);
+    setAmount(jumlah);
     setCount(quantity);
-  }, []);
+  }, [count, data, listAmount]);
 
   return (
     <section className="py-28 laptop:px-60 space-y-10 px-5 text-neutral-800">
@@ -75,11 +78,11 @@ export default function Cart() {
                     <li
                       className="my-auto cursor-pointer"
                       onClick={() => {
+                        setCount((count[index] -= 1));
+                        data[index].quantity = count[index];
                         if (data[index].quantity === 1) {
                           return (count[index] += 1);
                         }
-                        setCount((count[index] -= 1));
-                        data[index].quantity = count[index];
                       }}
                     >
                       <CgMathMinus />
@@ -88,8 +91,8 @@ export default function Cart() {
                     <li
                       className="my-auto cursor-pointer"
                       onClick={() => {
-                        setCount((count[index] += 1));
                         data[index].quantity = count[index];
+                        setCount((count[index] += 1));
                       }}
                     >
                       <CgMathPlus />
@@ -101,9 +104,10 @@ export default function Cart() {
                     className="cursor-pointer text-sm"
                     onClick={() => {
                       dispatch({ type: "remove" });
-                      setTotal((total - 1) % total);
                       data.splice(index, 1);
                       count.splice(index, 1);
+                      setAmount(amount - val.price * val.quantity);
+                      setTotal(total - 1);
                     }}
                   >
                     Remove
@@ -114,7 +118,7 @@ export default function Cart() {
           </section>
         ))}
       </section>
-      <section>
+      <section className="space-y-3">
         <div className="flex justify-between tablet:justify-around text-xl font-medium">
           <h3>Total</h3>
           <p>
@@ -123,6 +127,11 @@ export default function Cart() {
               currency: "IDR",
             }).format(parseInt(amount))}
           </p>
+        </div>
+        <div className="grid p-3 bg-neutral-800 text-white rounded-sm tablet:mx-40 laptop:mx-60">
+          <Link href="/auth/login" className="text-center">
+            Pembayaran
+          </Link>
         </div>
       </section>
     </section>
