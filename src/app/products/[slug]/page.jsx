@@ -6,14 +6,13 @@ import { useState, useReducer, useEffect } from "react";
 import { CgMathMinus, CgMathPlus } from "react-icons/cg";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useGlobalState } from "@/app/page";
-import { Toast } from "bootstrap";
 
 export default function Products({ params }) {
   const [count, setCount] = useState(1);
   const [detailProduct, setDetailProduct] = useGlobalState("product");
   const [cart, setCart] = useGlobalState("cart");
   const [quantity, setQuantity] = useGlobalState("quantity");
-  const [total, setTotal] = useGlobalState("total");
+  const [total, setTotal] = useGlobalState("countCart");
   const [amount, setAmount] = useGlobalState("amount");
   const [value, dispatch] = useReducer(reducer, {
     cart: cart,
@@ -28,6 +27,9 @@ export default function Products({ params }) {
       };
     }
   }
+  useEffect(() => {
+    setTotal(cart.length);
+  }, [total]);
 
   return (
     <section className="pt-28 xl:px-60 ">
@@ -86,7 +88,7 @@ export default function Products({ params }) {
                 className="flex py-3 px-5 gap-1 border rounded-sm cursor-pointer border-neutral-800 bg-neutral-200 text-neutral-800 hover:bg-neutral-100"
                 onClick={() => {
                   dispatch({ type: "add" });
-                  setTotal(cart.length);
+                  setTotal(cart.length + 1);
                 }}
               >
                 <MdAddShoppingCart className="text-xl my-auto" />

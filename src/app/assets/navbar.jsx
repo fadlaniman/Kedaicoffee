@@ -8,9 +8,9 @@ import { IoMdClose } from "react-icons/io";
 import { useGlobalState } from "../page";
 
 export default function Navbar() {
+  const [countCart, setCountCart] = useGlobalState("countCart");
   const [toggle, setToggle] = useState(false);
   const [navStatic, setNavStatic] = useState(false);
-  const [total, setTotal] = useGlobalState("total");
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -36,7 +36,7 @@ export default function Navbar() {
           </Link>
           <Link href="/cart" className="flex">
             <LuShoppingBag />
-            <p className="text-xs font-bold">{total}</p>
+            <p className="text-xs font-bold">{countCart}</p>
           </Link>
         </div>
       </section>

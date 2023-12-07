@@ -57,7 +57,7 @@ export const products = [
 export const { useGlobalState } = createGlobalState({
   product: 0,
   cart: [],
-  total: 0,
+  countCart: 0,
   quantity: [],
   amount: 0,
 });
@@ -238,7 +238,7 @@ export default function Home() {
             <h3 className="uppercase text-center text-lg text-neutral-800 border-t-2 border-b-2 border-neutral-800 py-5">
               all products
             </h3>
-            <label className="grid grid-flow-col py-12 px-10 justify-center tablet:justify-end">
+            <label className="grid grid-flow-col py-12 px-14 justify-center tablet:justify-end">
               <input
                 placeholder="Search"
                 type="search"
@@ -258,7 +258,7 @@ export default function Home() {
               <Link
                 href={`/products/${val.id}`}
                 onClick={() => {
-                  setDetailProduct(products[index]);
+                  setDetailProduct(products[val.id - 1]);
                 }}
                 className="grid rounded-sm shadow-sm border hover:border-neutral-800 duration-200 cursor-pointer place-content-between"
                 key={val.id}

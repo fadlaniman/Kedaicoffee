@@ -7,7 +7,7 @@ import { useEffect, useState, useReducer } from "react";
 import { CgMathMinus, CgMathPlus } from "react-icons/cg";
 
 export default function Cart() {
-  const [total, setTotal] = useGlobalState("total");
+  const [total, setTotal] = useGlobalState("countCart");
   const [data, setData] = useGlobalState("cart");
   const [amount, setAmount] = useGlobalState("amount");
   const [listAmount, setListAmount] = useState([]);
@@ -53,7 +53,7 @@ export default function Cart() {
             className="grid laptop:grid-flow-col gap-7 py-7 laptop:mx-60  border-t-2 border-neutral-800"
             key={val.id}
           >
-            <section className="grid grid-flow-col space-x-7 tablet:justify-around justify-center">
+            <section className="grid grid-flow-col space-x-7">
               <div className="w-48">
                 <Image
                   src={val.image}
@@ -81,7 +81,8 @@ export default function Cart() {
                         setCount((count[index] -= 1));
                         data[index].quantity = count[index];
                         if (data[index].quantity === 1) {
-                          return (count[index] += 1);
+                          setCount((count[index] += 1));
+                          console.log(count[index]);
                         }
                       }}
                     >
@@ -128,7 +129,13 @@ export default function Cart() {
             }).format(parseInt(amount))}
           </p>
         </div>
-        <div className="grid p-3 bg-neutral-800 text-white rounded-sm tablet:mx-40 laptop:mx-60">
+        <div
+          className={
+            amount
+              ? "grid p-3 bg-neutral-800 text-white rounded-sm tablet:mx-40 laptop:mx-60"
+              : "hidden"
+          }
+        >
           <Link href="/auth/login" className="text-center">
             Pembayaran
           </Link>
