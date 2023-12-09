@@ -50,70 +50,64 @@ export default function Cart() {
         <h3 className="text-center py-7 text-2xl">Shopping Cart</h3>
         {data.map((val, index) => (
           <section
-            className="grid laptop:grid-flow-col gap-7 py-7 laptop:mx-60  border-t-2 border-neutral-800"
+            className="grid laptop:grid-flow-col gap-5 py-7 laptop:mx-60  border-t-2 border-neutral-800"
             key={val.id}
           >
-            <section className="grid grid-flow-col space-x-7">
-              <div className="w-48">
-                <Image
-                  src={val.image}
-                  width={500}
-                  height={500}
-                  quality={100}
-                  alt={val.image}
-                />
-              </div>
-              <div className="grid laptop:grid-flow-col laptop:space-x-60 space-y-2">
-                <div className="grid my-auto">
-                  <h3 className="text-lg">{val.name}</h3>
-                </div>
-                <div className="my-auto">
-                  <h3 className="my-auto">
-                    {Intl.NumberFormat("id-ID", {
-                      style: "currency",
-                      currency: "IDR",
-                    }).format(parseInt(val.price))}
-                  </h3>
-                  <ul className="flex gap-7 border py-2 px-3 text-sm w-max">
-                    <li
-                      className="my-auto cursor-pointer"
-                      onClick={() => {
-                        setCount((count[index] -= 1));
-                        data[index].quantity = count[index];
-                        if (data[index].quantity === 1) {
-                          setCount((count[index] += 1));
-                          console.log(count[index]);
-                        }
-                      }}
-                    >
-                      <CgMathMinus />
-                    </li>
-                    <li className="my-auto">{val.quantity}</li>
-                    <li
-                      className="my-auto cursor-pointer"
-                      onClick={() => {
-                        data[index].quantity = count[index];
-                        setCount((count[index] += 1));
-                      }}
-                    >
-                      <CgMathPlus />
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3
-                    className="cursor-pointer text-sm"
+            <section className="flex justify-around space-x-5">
+              <Image
+                src={val.image}
+                width={500}
+                height={500}
+                quality={100}
+                alt={val.image}
+                className="w-44 my-auto"
+              />
+
+              <div className="block space-y-2">
+                <h3 className="text-lg">{val.name}</h3>
+                <p className="my-auto">
+                  {Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                  }).format(parseInt(val.price))}
+                </p>
+                <ul className="flex gap-7 border py-2 px-3 text-sm w-max">
+                  <li
+                    className="my-auto cursor-pointer"
                     onClick={() => {
-                      dispatch({ type: "remove" });
-                      data.splice(index, 1);
-                      count.splice(index, 1);
-                      setAmount(amount - val.price * val.quantity);
-                      setTotal(total - 1);
+                      setCount((count[index] -= 1));
+                      data[index].quantity = count[index];
+                      if (data[index].quantity === 1) {
+                        setCount((count[index] += 1));
+                        console.log(count[index]);
+                      }
                     }}
                   >
-                    Remove
-                  </h3>
-                </div>
+                    <CgMathMinus />
+                  </li>
+                  <li className="my-auto">{val.quantity}</li>
+                  <li
+                    className="my-auto cursor-pointer"
+                    onClick={() => {
+                      data[index].quantity = count[index];
+                      setCount((count[index] += 1));
+                    }}
+                  >
+                    <CgMathPlus />
+                  </li>
+                </ul>
+                <p
+                  className="cursor-pointer text-sm"
+                  onClick={() => {
+                    dispatch({ type: "remove" });
+                    data.splice(index, 1);
+                    count.splice(index, 1);
+                    setAmount(amount - val.price * val.quantity);
+                    setTotal(total - 1);
+                  }}
+                >
+                  Remove
+                </p>
               </div>
             </section>
           </section>
