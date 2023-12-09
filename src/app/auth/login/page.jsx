@@ -5,14 +5,14 @@ export default function Login() {
     <main>
       <section className="py-40 px-10">
         <h3 className="text-center py-7 text-2xl">Sign In</h3>
-        <form className="grid tablet:w-1/4 tablet:mx-auto">
+        <form className="grid tablet:w-1/2 laptop:w-1/4 tablet:mx-auto">
           <label htmlFor="email" className="text-sm py-2">
             Email
           </label>
           <input
             id="email"
             type="text"
-            className="outline-none border-2 border-neutral-800 p-3 rounded-sm"
+            className="outline-none border-2 border-neutral-800 p-3 rounded-sm w-full"
           />
 
           <label htmlFor="password" className="text-sm py-2">
@@ -21,7 +21,7 @@ export default function Login() {
           <input
             id="password"
             type="password"
-            className="outline-none border-2 border-neutral-800 p-3 rounded-sm"
+            className="outline-none border-2 border-neutral-800 p-3 rounded-sm w-full"
           />
 
           <button className="mt-10 px-7 py-3 bg-neutral-800 text-white rounded-sm">
