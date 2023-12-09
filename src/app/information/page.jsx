@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Information() {
   return (
-    <section className="py-40 px-5 laptop:px-60">
+    <section className="py-40 px-5 laptop:px-40">
       <section className="grid justify-center space-y-5">
         <h3 className="text-2xl text-center">Offline Store</h3>
         <Image
@@ -13,20 +13,17 @@ export default function Information() {
           className="rounded-xl"
           alt="image"
         />
-        <section className="pt-5 space-y-3 text-sm text-justify">
-          <div className="flex justify-center gap-3">
-            <h3>Products :</h3>
-            <p>Coffee & Non Coffee</p>
-          </div>
-          <div className="flex justify-center gap-3">
-            <h3>Address :</h3>
-            <p>Pematangsiantar City</p>
-          </div>
-          <div className="flex justify-center gap-3">
-            <h3>Operational :</h3>
-            <p>Everyday, 16 Am - 24 Pm</p>
-          </div>
-        </section>
+        <ul className="text-center mx-auto text-sm space-y-1">
+          <li>
+            Products: <span>Coffee & Non Coffee</span>
+          </li>
+          <li>
+            Operational: <span>Everyday, 16 Am - 02 Am</span>
+          </li>
+          <li>
+            Adress: <span>Pematangsiantar City</span>
+          </li>
+        </ul>
       </section>
     </section>
   );
