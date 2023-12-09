@@ -54,6 +54,30 @@ export const products = [
   },
 ];
 
+const value = [
+  {
+    id: 1,
+    head: `Citywide Delivery`,
+    description: `Get your favorite items delivered citywide with our reliable
+    and swift delivery service`,
+    image: `/images/logistics.png`,
+  },
+  {
+    id: 2,
+    head: `Everytime`,
+    description: `Enjoy the convenience of shopping anytime with our 24-hour
+    service!`,
+    image: `/images/time.png`,
+  },
+  {
+    id: 3,
+    head: `Cash On Delivery`,
+    description: `Pay upon delivery! Get your favorite products with the
+    convenient Cash On Delivery method.`,
+    image: `/images/loan.png`,
+  },
+];
+
 export const { useGlobalState } = createGlobalState({
   product: 0,
   cart: [],
@@ -173,72 +197,30 @@ export default function Home() {
           </section>
         </section>
         <section className="container-benefits">
-          <section
-            className="grid sm:grid-flow-col gap-20 px-10"
-            ref={sections}
-          >
-            <section className="logistics grid space-y-5">
-              <Image
-                src="/images/logistics.png"
-                width={500}
-                height={500}
-                quality={100}
-                alt="logistics.png"
-                className="w-1/5 mx-auto"
-              />
-              <div className="space-y-3 text-center">
-                <h3 className="font-medium">Citywide Delivery</h3>
-                <p className="text-sm">
-                  Get your favorite items delivered citywide with our reliable
-                  and swift delivery service
-                </p>
-              </div>
-            </section>
-
-            <section className="grid space-y-5 place-content-start">
-              <Image
-                src="/images/time.png"
-                width={500}
-                height={500}
-                quality={100}
-                alt="logistics.png"
-                className="w-1/5 mx-auto"
-              />
-              <div className="space-y-3 text-center">
-                <h3 className="font-medium">Everytime</h3>
-                <p className="text-sm">
-                  Enjoy the convenience of shopping anytime with our 24-hour
-                  service!
-                </p>
-              </div>
-            </section>
-
-            <section className="grid space-y-5">
-              <Image
-                src="/images/loan.png"
-                width={500}
-                height={500}
-                quality={100}
-                alt="logistics.png"
-                className="w-1/5 mx-auto"
-              />
-              <div className="space-y-3 text-center">
-                <h3 className="font-medium">Cash On Delivery</h3>
-                <p className="text-sm">
-                  Pay upon delivery! Get your favorite products with the
-                  convenient Cash On Delivery method.
-                </p>
-              </div>
-            </section>
+          <section className="grid tablet:grid-flow-col gap-10" ref={sections}>
+            {value.map((element) => (
+              <section className="grid space-y-3 text-center" key={element.id}>
+                <Image
+                  src={element.image}
+                  width={500}
+                  height={500}
+                  quality={100}
+                  alt={element.image}
+                  className="w-16 mx-auto"
+                />
+                <h3 className="font-medium">{element.head}</h3>
+                <p className="text-sm w-1/2 mx-auto">{element.description}</p>
+              </section>
+            ))}
           </section>
         </section>
 
         <section className="container-catalog">
           <section>
-            <h3 className="uppercase text-center text-lg text-neutral-800 border-t-2 border-b-2 border-neutral-800 py-5">
+            <h3 className="uppercase text-center text-lg py-5 border-t-2 border-b-2 border-neutral-800">
               all products
             </h3>
-            <label className="grid grid-flow-col py-12 px-14 justify-center tablet:justify-end">
+            <label className="flex py-12 justify-center tablet:justify-end mx-5">
               <input
                 placeholder="Search"
                 type="search"
@@ -246,7 +228,7 @@ export default function Home() {
                   const input = e.target.value.toLowerCase();
                   setSearch(input);
                 }}
-                className="outline-none rounded-sm bg-neutral-100 p-3"
+                className="outline-none rounded-sm bg-neutral-100 p-3 w-full tablet:w-1/4"
               />
               <p className="bg-neutral-100 p-3">
                 <IoSearchOutline className="text-2xl my-auto cursor-pointer text-neutral-400" />
@@ -260,10 +242,10 @@ export default function Home() {
                 onClick={() => {
                   setDetailProduct(products[val.id - 1]);
                 }}
-                className="grid rounded-sm shadow-sm border hover:border-neutral-800 duration-200 cursor-pointer place-content-between"
+                className="grid rounded-sm shadow-sm border hover:border-neutral-800 duration-200 cursor-pointer"
                 key={val.id}
               >
-                <div className="grid space-y-5">
+                <div className="block space-y-5 justify-between">
                   <Image
                     src={val.image}
                     width={500}
@@ -272,12 +254,12 @@ export default function Home() {
                     alt="product"
                     className="h-32"
                   />
-                  <div className="space-y-2 block px-3">
+                  <div className="space-y-2 px-3">
                     <h3 className="font-bold">{val.name} </h3>
                     <p>{val.description}</p>
                   </div>
                 </div>
-                <div className="  px-3 py-7 space-y-7 text-neutral-800">
+                <div className="mt-auto  px-3 py-7 space-y-7 text-neutral-800">
                   <p>
                     {Intl.NumberFormat("id-ID", {
                       style: "currency",
