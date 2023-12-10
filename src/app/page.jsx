@@ -95,7 +95,7 @@ export default function Home() {
   gsap.registerPlugin(ScrollTrigger);
   const [detailProduct, setDetailProduct] = useGlobalState("product");
   useEffect(() => {
-    let index = 1;
+    let index = 0;
     const slide = sliderRef.current.children;
     const width = document.querySelector(".container-images").offsetWidth;
 
